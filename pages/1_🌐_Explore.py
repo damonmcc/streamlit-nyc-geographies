@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit.hello.utils import show_code
+from utils.dev import show_code
 
 PAGE_HEADER = "Explore Page"
 PAGE_ICON = "🌐"
@@ -18,6 +18,6 @@ def run_explore():
 if __name__ == "__main__":
     st.set_page_config(page_title=PAGE_HEADER, page_icon=PAGE_ICON)
     st.sidebar.header("Settings")
+    run_explore()
     show_code(run_explore)
 
-    run_explore()
