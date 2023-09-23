@@ -1,4 +1,5 @@
-altair
+geopandas
+leafmap
 numpy
 pandas
 pydeck
