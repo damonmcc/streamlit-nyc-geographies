@@ -12,8 +12,10 @@ def run_explore():
     st.markdown(
         """
         This page is for exploring the various NYC geogrpahic boundaries using a map.
-    """
+        """
     )
+    show_demo_map()
+    # demo_map.to_streamlit(width=700, height=500, add_layer_control=True)
     st.warning("Please write some code.")
 
 
