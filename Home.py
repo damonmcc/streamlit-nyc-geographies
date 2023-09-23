@@ -24,8 +24,6 @@ def run():
         page_icon="👋🏾",
     )
 
-    st.write("# Welcome to NYC Geographies! 👋🏾")
-
     st.sidebar.success("Select a demo above.")
     expander = st.sidebar.expander("About")
     expander.write(
@@ -33,6 +31,8 @@ def run():
         This app allows users to view the geographic boundaries used in New York City.
     """
     )
+
+    st.write("# Welcome to NYC Geographies! 👋🏾")
 
     st.markdown(
         """
