@@ -13,7 +13,7 @@
 
 ### Deployment
 
-This repo deploys the app using a webhook and two branches:
+This repo deploys the app using a webhook and two persistent branches:
 
 - `main`` -> [nyc-geographies.streamlit.app](https://nyc-geographies.streamlit.app/)
 - `dev`` -> [nyc-geographies-dev.streamlit.app](https://nyc-geographies-dev.streamlit.app/)
