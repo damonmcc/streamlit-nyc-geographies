@@ -24,9 +24,15 @@ def run():
         page_icon="👋🏾",
     )
 
-    st.write("# Welcome to Streamlit! 👋🏾")
+    st.write("# Welcome to NYC Geographies! 👋🏾")
 
     st.sidebar.success("Select a demo above.")
+    expander = st.sidebar.expander("What is this?")
+    expander.write(
+        """
+        This app allows users to view the geographic boundaries used in New York City.
+    """
+    )
 
     st.markdown(
         """
