@@ -4,7 +4,7 @@ PAGE_HEADER = "Explore Page"
 
 
 def run_explore():
-    st.error("Please write some code.")
+    st.warning("Please write some code.")
 
 
 st.set_page_config(page_title=PAGE_HEADER, page_icon="🌐")
