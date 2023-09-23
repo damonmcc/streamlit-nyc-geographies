@@ -1,4 +1,5 @@
 import streamlit as st
+
 from utils.dev import show_code
 
 PAGE_HEADER = "Explore Page"
@@ -18,6 +19,10 @@ def run_explore():
 if __name__ == "__main__":
     st.set_page_config(page_title=PAGE_HEADER, page_icon=PAGE_ICON)
     st.sidebar.header("Settings")
-    run_explore()
+    
+    # # DEBUG
+    # st.sidebar.warning(f"{_repo_root=}")
     show_code(run_explore)
+
+    run_explore()
 
