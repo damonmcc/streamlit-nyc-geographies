@@ -16,7 +16,7 @@ def run_page():
         """
     )
     for geography in GEOEGRAPHIES:
-        st.markdown(f"## {geography.name=}, ({geography.code=})")
+        # st.markdown(f"## {geography.name=}, ({geography.code=})")
 
         # st.dataframe(
         #     geography.geometries
@@ -25,13 +25,19 @@ def run_page():
         #     #     subset=["same_columns", "same_row_count"],
         #     # )
         # )
-        with st.expander("DEV DEBUG SECTION"):
+        with st.expander("geography.name"):
+            # with st.spinner(f"⏳ Loading {geography.name} ..."):
+            #     status_messages = load_source_data_to_compare(
+            #         dataset=dataset, source_data_versions=source_data_versions
+            #     )
+            # success_message = "\n\n".join(status_messages)
+            # st.success(success_message)
             st.markdown(
                 f"""
                 {type(geography.geometries)}
                 """
             )
-            show_basic_map(geography.geometries)
+            show_basic_map(geography.geometries, geography.name)
             # st.dataframe(geography.geometries)
             # st.table(geography.geometries)
             # st.json(source_report_results)
