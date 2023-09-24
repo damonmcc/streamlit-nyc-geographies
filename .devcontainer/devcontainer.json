@@ -12,12 +12,14 @@
     "vscode": {
       "settings": {},
       "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "streetsidesoftware.code-spell-checker",
-        "yzhang.markdown-all-in-one",
-        "DavidAnson.vscode-markdownlint",
-        "bierner.markdown-preview-github-styles"
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"streetsidesoftware.code-spell-checker",
+		"yzhang.markdown-all-in-one",
+		"DavidAnson.vscode-markdownlint",
+		"bierner.markdown-preview-github-styles",
+		"tamasfe.even-better-toml",
+		"janisdd.vscode-edit-csv"
 	]
     }
   },
