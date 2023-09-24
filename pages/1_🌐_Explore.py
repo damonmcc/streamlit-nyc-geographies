@@ -15,8 +15,9 @@ def run_explore():
         """
     )
     show_demo_map()
-    # demo_map.to_streamlit(width=700, height=500, add_layer_control=True)
-    st.warning("Please write some code.")
+    # m = leafmap.Map()
+    # m.to_streamlit()
+    # st.warning("Please write some code.")
 
 
 if __name__ == "__main__":
