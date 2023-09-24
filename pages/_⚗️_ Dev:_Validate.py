@@ -25,7 +25,7 @@ def run_page():
         #     #     subset=["same_columns", "same_row_count"],
         #     # )
         # )
-        with st.expander("geography.name"):
+        with st.expander(f"{geography.name}"):
             # with st.spinner(f"⏳ Loading {geography.name} ..."):
             #     status_messages = load_source_data_to_compare(
             #         dataset=dataset, source_data_versions=source_data_versions
