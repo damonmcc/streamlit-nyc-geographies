@@ -1,23 +1,14 @@
-from functools import cached_property
+# from functools import cached_property
+import pandas as pd
 import geopandas as gpd
+from typing import Optional
 
-# import streamlit as st
-# import census
-# from collections import namedtuple
 
-# GEOGRAPHY_TYPES = [
-#     ""
-# ]
+WKT_PROJECTION = "EPSG:4326"
+NYC_PROJECTION = "EPSG:2263"
+DEFAULT_PROJECTION = NYC_PROJECTION
 
-# name, code, type
-# TestDataset = namedtuple(
-#     "TestDataset",
-#     [
-#         "name",
-#         "code",
-#         "type",
-#     ],
-# )
+GEOGRAPHY_DETAILS = pd.read_csv("geography_details.csv").set_index("code")
 
 
 class Geography:
@@ -25,42 +16,52 @@ class Geography:
         self,
         name: str,
         code: str,
-        url: str,
-        # geometries:[gpd.GeoDataFrame],
+        url: str = None,
     ):
         self.name = name
         self.code = code
         self.url = url
-        self.geometries = gpd.read_file(self.url)
-        # self.geometries = gpd.GeoDataFrame()
+        self.geometries = None
 
-    # def _get_geometries(self) -> gpd.GeoDataFrame:
-    #     return gpd.read_file(url)
-
-    # @cached_property
-    # def total_area() -> float:
-
-    # for geometry in
+    def _get_geometries(self):
+        geometries = gpd.read_file(self.url)
+        if geometries.crs != DEFAULT_PROJECTION:
+            geometries = reproject_geometry(geometries, DEFAULT_PROJECTION)
+        self.geometries = geometries
+    # TODO set columns of geometries (code, name, geometry)
 
 
-# "Borough, boro, 5, NYS, 2000 B.C.E, pretty big"
-# GEOGRAPHIES = [
-#     Geog(Borough
-
-GEOEGRAPHIES = [
-    Geography(
-        name="Borough",
-        code="boro",
-        url="https://data.cityofnewyork.us/api/geospatial/tqmj-j8zm?method=export&format=GeoJSON",
-    )
-]
+def construct_all_geographies() -> dict[str, Geography]:
+    geoegraphies = {}
+    for details in GEOGRAPHY_DETAILS.itertuples():
+        geoegraphies[details.Index] = Geography(
+            name=details.name,
+            code=details.Index,
+            url=details.uri,
+        )
+    return geoegraphies
 
 
-# def list_all_geographies():
-# """Showing the code of the demo."""
-# show_code = st.sidebar.checkbox("Show code", False)
-# if show_code:
-# Showing the code of the demo.
-# st.markdown("## Code")
-# sourcelines, _ = inspect.getsourcelines(demo)
-# st.code(textwrap.dedent("".join(sourcelines[1:])))
+def fetch_geometries(geographies: list[Geography]):
+    for geo in geographies.values():
+        geo._get_geometries()
+
+
+def reproject_geometry(
+    data: gpd.GeoDataFrame,
+    new_projection: str,
+    old_projection: Optional[str] = None,
+) -> gpd.GeoDataFrame:
+    if not data.crs and not old_projection:
+        raise RuntimeError(
+            f"GeoDataFrame has no CRS set. Must declare one using the old_projection arg."
+        )
+    if old_projection:
+        data.set_crs(old_projection, inplace=True)
+    old_projection = data.crs
+    data.to_crs(new_projection, inplace=True)
+    if data.crs != new_projection:
+        raise RuntimeError(
+            f"Actual new projection {data.crs} is not the expected {new_projection}"
+        )
+    return data

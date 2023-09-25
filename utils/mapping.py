@@ -1,16 +1,23 @@
 import geopandas as gpd
 import leafmap.foliumap as leafmap
+import leafmap.basemaps as basemaps
 
+DEFAULT_MAP_SIZE = {"width": 700, "height": 700}
+DEFAULT_BASEMAP = "stamenterrain"
 NYC_CENTER_COORDS = [40.726446, -73.983307]
-NYC_CENTER_ZOOM = 12
+NYC_CENTER_ZOOM = 13
 
 
-def show_basic_map(geodata: gpd.GeoDataFrame, name: str):
+def create_basic_map():
     m = leafmap.Map(
-        tiles="stamenterrain", center=NYC_CENTER_COORDS, zoom=NYC_CENTER_ZOOM
+        tiles=DEFAULT_BASEMAP, center=NYC_CENTER_COORDS, zoom=NYC_CENTER_ZOOM
     )
-    m.add_gdf(geodata, layer_name=name)
-    m.to_streamlit(width=600, height=700)
+    # m.add_basemap(other_common_basemap)
+    return m
+
+
+def show_map(m: leafmap.Map) -> None:
+    m.to_streamlit(width=DEFAULT_MAP_SIZE["width"], height=DEFAULT_MAP_SIZE["height"])
 
 
 # @st.cache_data(ttl=120)
