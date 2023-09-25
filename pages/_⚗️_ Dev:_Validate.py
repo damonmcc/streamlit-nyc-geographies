@@ -20,22 +20,14 @@ def run_page():
         """
     )
     with st.expander("View GEOGRAPHY_DETAILS"):
-        st.dataframe(
-            GEOGRAPHY_DETAILS
-            # GEOGRAPHY_DETAILS.style.applymap(
-            #     dataframe_style_source_report_results,
-            #     subset=["same_columns", "same_row_count"],
-            # )
-        )
-
-    basic_map = create_basic_map()
-
-    geographies = construct_all_geographies()
+        st.dataframe(GEOGRAPHY_DETAILS)
 
     with st.spinner(f"⏳ Loading each geography's geometries ..."):
+        geographies = construct_all_geographies()
         fetch_geometries(geographies)
     st.success("Loaded each geography's geometries")
 
+    basic_map = create_basic_map()
     for geography in geographies.values():
         st.markdown(f"##### {geography.name}")
         st.markdown(
@@ -44,12 +36,14 @@ def run_page():
             - total area (sq mi): {round((geography.geometries.area.sum() * 3.587006427e-8), 4):,}
             """
         )
+        # TODO vary line weight/color by layer
         basic_map.add_gdf(geography.geometries, layer_name=geography.name)
 
     with st.expander(f"View map of all geographies"):
         with st.spinner(f"⏳ Building map of all geographies ..."):
             show_map(basic_map)
 
+    # TODO compare some geographies
     st.warning("Write some code.")
 
 

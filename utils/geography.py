@@ -16,7 +16,7 @@ class Geography:
         self,
         name: str,
         code: str,
-        url: str = None,
+        url: Optional[str] = None,
     ):
         self.name = name
         self.code = code
@@ -28,6 +28,7 @@ class Geography:
         if geometries.crs != DEFAULT_PROJECTION:
             geometries = reproject_geometry(geometries, DEFAULT_PROJECTION)
         self.geometries = geometries
+
     # TODO set columns of geometries (code, name, geometry)
 
 
@@ -42,7 +43,7 @@ def construct_all_geographies() -> dict[str, Geography]:
     return geoegraphies
 
 
-def fetch_geometries(geographies: list[Geography]):
+def fetch_geometries(geographies: dict[str, Geography]):
     for geo in geographies.values():
         geo._get_geometries()
 
