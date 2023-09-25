@@ -14,16 +14,11 @@ def run_explore():
         This page is for exploring the various NYC geogrpahic boundaries using a map.
         """
     )
-    show_demo_map()
-    # m = leafmap.Map()
-    # m.to_streamlit()
-    # st.warning("Please write some code.")
+    st.warning("Write some code.")
 
 
 if __name__ == "__main__":
     st.set_page_config(page_title=PAGE_HEADER, page_icon=PAGE_ICON)
     st.sidebar.header("Settings")
-
-    show_code(run_explore)
 
     run_explore()
