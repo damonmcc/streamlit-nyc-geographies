@@ -1,0 +1,4 @@
+name,code,uri
+City,city,data/nyc_boundaries.geojson
+City Council Districts,city_council,https://data.cityofnewyork.us/api/geospatial/yusd-j4xi?method=export&format=GeoJSON
+Boroughs,boro,https://data.cityofnewyork.us/api/geospatial/tqmj-j8zm?method=export&format=GeoJSON

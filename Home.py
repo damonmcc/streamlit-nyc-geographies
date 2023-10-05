@@ -20,13 +20,19 @@ LOGGER = get_logger(__name__)
 
 def run():
     st.set_page_config(
-        page_title="Hello",
+        page_title="Home",
         page_icon="👋🏾",
     )
 
-    st.write("# Welcome to Streamlit! 👋🏾")
-
     st.sidebar.success("Select a demo above.")
+    expander = st.sidebar.expander("About")
+    expander.write(
+        """
+        This app allows users to view the geographic boundaries used in New York City.
+    """
+    )
+
+    st.write("# Welcome to NYC Geographies! 👋🏾")
 
     st.markdown(
         """
