@@ -12,9 +12,15 @@
     "vscode": {
       "settings": {},
       "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance"
-      ]
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"streetsidesoftware.code-spell-checker",
+		"yzhang.markdown-all-in-one",
+		"DavidAnson.vscode-markdownlint",
+		"bierner.markdown-preview-github-styles",
+		"tamasfe.even-better-toml",
+		"janisdd.vscode-edit-csv"
+	]
     }
   },
   "updateContentCommand": "[ -f packages.txt ] && sudo apt update && sudo apt upgrade -y && sudo xargs apt install -y <packages.txt; [ -f requirements.txt ] && pip3 install --user -r requirements.txt; pip3 install --user streamlit; echo '✅ Packages installed and Requirements met'",
